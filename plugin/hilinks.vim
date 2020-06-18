@@ -127,11 +127,10 @@ fun! <SID>HiLinkTrace(always)
   " display hilink traces
   redraw
   let synid= hlID(lastlink)
-  if !exists("syntaxstack")
-   echo printf("HltTrace: %-".g:hilinks_fmtwidth."s fg<%s> bg<%s>",hilink,synIDattr(synid,"fg"),synIDattr(synid,"bg"))
-  else
-   echo printf("SynStack: %-".g:hilinks_fmtwidth."s  HltTrace: %-".g:hilinks_fmtwidth."s fg<%s> bg<%s>",syntaxstack,hilink,synIDattr(synid,"fg"),synIDattr(synid,"bg"))
+  if exists("syntaxstack")
+   echo printf("SynStack:%s\n", syntaxstack)
   endif
+  echo printf("HltTrace: %s\n          fg=%s bg=%s",hilink,synIDattr(synid,"fg"),synIDattr(synid,"bg"))
 
   " restore register a
   let @a= keep_rega
